@@ -25,7 +25,7 @@ public abstract class BaseRepositoryImpl<TEntity, TId> implements BaseRepository
     public TEntity save(TEntity entity) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.merge(entity);
+            entity = em.merge(entity);
             em.getTransaction().commit();
             return entity;
         }
